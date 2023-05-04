@@ -13,3 +13,4 @@ Seeed Studio XIAO ESP32S3 Sense integrates a camera sensor, digital microphone, 
 * Outstanding RF performance: Support 2.4GHz Wi-Fi and BLE dual wireless communication, support 100m+ remote communication when connected with U.FL antenna
 * Thumb-sized Compact Design: 21 x 17.5mm, adopting the classic form factor of XIAO, suitable for space-limited projects like wearable devices
 
+![portada]()
