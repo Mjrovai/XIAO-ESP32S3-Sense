@@ -1,4 +1,5 @@
 # ICM20600
+![ICM2060[(XIAO-ESP32S3-Sense/IMU/images/Grove-ICM2060.jpg)
 
 For Testing the Grove ICM20600 Accelerometer, it is important to update the files **I2Cdev.cpp** and **I2Cdev.h**
  - Download both files from: 
