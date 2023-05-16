@@ -1,7 +1,7 @@
 # MPU6050
-
+![MPU6050]()
 # ICM20600
-![ICM2060](https://github.com/Mjrovai/XIAO-ESP32S3-Sense/blob/db13cef54ed5b05a4eebacae4e25bde7122f3e4e/IMU/images/Grove-ICM2060.jpg)
+![ICM2060]()
 
 For Testing the Grove ICM20600 Accelerometer, it is important to update the files **I2Cdev.cpp** and **I2Cdev.h**
  - Download both files from: 
