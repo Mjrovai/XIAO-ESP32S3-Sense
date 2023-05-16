@@ -1,4 +1,6 @@
-For Testing the Grove ICM20600 Accelerometer, it is important to update the files I2Cdev.cpp and I2Cdev.h
+# ICM20600
+
+For Testing the Grove ICM20600 Accelerometer, it is important to update the files **I2Cdev.cpp** and **I2Cdev.h**
  - Download both files from: 
   - https://github.com/jrowberg/i2cdevlib/tree/master/Arduino/I2Cdev
     
@@ -9,3 +11,4 @@ For Testing the Grove ICM20600 Accelerometer, it is important to update the file
 - Connect the Grove Moodule to the XIAO ESP32S3.
 
 - Run the accelerometer_test.ino
+---
