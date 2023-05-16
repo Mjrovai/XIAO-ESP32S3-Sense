@@ -1,5 +1,5 @@
 # MPU6050
-![MPU6050]()
+![MPU6050](https://github.com/Mjrovai/XIAO-ESP32S3-Sense/blob/71b363b20902d01222c3fe6aab20d072103490e0/IMU/images/xiao-imu-mount.jpg)
 # ICM20600
 ![ICM2060]()
 
