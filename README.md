@@ -1,6 +1,14 @@
 # XIAO-ESP32S3-Sense
-[This repository contains the code used on tutorial: "TinyML Made Easy: Image Classification"](https://www.hackster.io/mjrobot/tinyml-made-easy-image-classification-cb42ae)
+![XIAO ESP32S3 Sense](images/portadas.png)
 
+This repository contains the code used on the TinyML tutorials: 
+- Image/Camera - ["Image Classification"](https://www.hackster.io/mjrobot/tinyml-made-easy-image-classification-cb42ae)
+
+- Motion/Accelerometer - ["Motion Classification and Anomaly Detection"](https://www.hackster.io/mjrobot/exploring-machine-learning-with-the-new-xiao-esp32s3-6463e5
+)
+- Sound/Microphone - ["KeyWord Spotting"](https://www.hackster.io/mjrobot/tinyml-made-easy-keyword-spotting-kws-5fa6e7)
+
+## The XIAO-ESP32S3-Sense
 Seeed Studio XIAO ESP32S3 Sense integrates a camera sensor, digital microphone, and SD card support. Combining embedded ML computing power and photography capability, this development board is a great tool to get started with TinyML (intelligent voice and vision AI).
 ![XIAO ESP32S3 Sense](https://media-cdn.seeedstudio.com/media/catalog/product/cache/bb49d3ec4ee05b6f018e93f896b8a25d/1/-/1-113991115-xiao-esp32s3-sense-45font.jpg)
 
