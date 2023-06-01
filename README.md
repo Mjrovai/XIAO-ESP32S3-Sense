@@ -10,7 +10,8 @@ This repository contains the code used on the TinyML tutorials:
 
 ## The XIAO-ESP32S3-Sense
 Seeed Studio XIAO ESP32S3 Sense integrates a camera sensor, digital microphone, and SD card support. Combining embedded ML computing power and photography capability, this development board is a great tool to get started with TinyML (intelligent voice and vision AI).
-![XIAO ESP32S3 Sense](https://media-cdn.seeedstudio.com/media/catalog/product/cache/bb49d3ec4ee05b6f018e93f896b8a25d/1/-/1-113991115-xiao-esp32s3-sense-45font.jpg)
+
+![XIAO ESP32S3 Sense](images/XIAO_ESP32C3_Sense.png)
 
 - Webpage: https://www.seeedstudio.com/XIAO-ESP32S3-Sense-p-5639.html
 - WiKi: https://wiki.seeedstudio.com/xiao_esp32s3_getting_started/
@@ -24,3 +25,6 @@ Seeed Studio XIAO ESP32S3 Sense integrates a camera sensor, digital microphone, 
 * Thumb-sized Compact Design: 21 x 17.5mm, adopting the classic form factor of XIAO, suitable for space-limited projects like wearable devices
 
 ![portada](https://github.com/Mjrovai/XIAO-ESP32S3-Sense/blob/main/images/portada1.png)
+
+## The Round Display
+
