@@ -26,5 +26,23 @@ Seeed Studio XIAO ESP32S3 Sense integrates a camera sensor, digital microphone, 
 
 ![portada](https://github.com/Mjrovai/XIAO-ESP32S3-Sense/blob/main/images/portada1.png)
 
-## The Round Display
+## The Round Display for XIAO
+- [WebPage](https://www.seeedstudio.com/Seeed-Studio-Round-Display-for-XIAO-p-5638.html)
+- [WikiPage](https://wiki.seeedstudio.com/get_start_round_display/)
 
+Seeed Studio Round Display for XIAO is an expansion board compatible with all the XIAO family development boards. It features a fully covered touch screen on one side, designed as a 39mm disc. It contains an onboard RTC holder, charge chip, and TF card slot within its compact size, perfect for interactive displays in smart homes, wearables, and more.
+
+* 1.28-inch round touch screen, 
+* 240×240 resolution, 
+* 65k colors, 
+* RTC, 
+* charge IC, 
+* TF card slot, 
+* JST 1.25 connector, 
+* All XIAO Compatible,
+
+![images/round-display-2.png](images/round-display-2.png)
+
+### Code
+The code [camera_round_display_save_jpeg](camera_round_display_save_jpeg) can be used for Data collection.
+![images/data_collection.png](images/data_collection.png)
