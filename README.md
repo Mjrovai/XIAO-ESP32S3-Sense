@@ -2,10 +2,10 @@
 ![XIAO ESP32S3 Sense](images/portadas.png)
 
 This repository contains the code used on the TinyML tutorials: 
-- Image/Camera - ["Image Classification"](https://www.hackster.io/mjrobot/tinyml-made-easy-image-classification-cb42ae) -  [pdf](https://github.com/Mjrovai/XIAO-ESP32S3-Sense/blob/main/1.XIAO_ESP32S3-Image_Classification.pdf)
+- Image/Camera - "Image Classification":  [[Web version]](https://www.hackster.io/mjrobot/tinyml-made-easy-image-classification-cb42ae) -  [[pdf]](https://github.com/Mjrovai/XIAO-ESP32S3-Sense/blob/main/1.XIAO_ESP32S3-Image_Classification.pdf)
 
-- Motion/Accelerometer - ["Motion Classification and Anomaly Detection"](https://www.hackster.io/mjrobot/exploring-machine-learning-with-the-new-xiao-esp32s3-6463e5) -  [pdf](https://github.com/Mjrovai/XIAO-ESP32S3-Sense/blob/main/2.XIAO_ESP32S3-Motion_Classification.pdf)
-- Sound/Microphone - ["KeyWord Spotting"](https://www.hackster.io/mjrobot/tinyml-made-easy-keyword-spotting-kws-5fa6e7) -  [pdf](https://github.com/Mjrovai/XIAO-ESP32S3-Sense/blob/main/3.XIAO_ESP32S3-Keyword_Spotting.pdf)
+- Motion/Accelerometer - "Motion Classification and Anomaly Detection":  [[Web version]](https://www.hackster.io/mjrobot/exploring-machine-learning-with-the-new-xiao-esp32s3-6463e5) -  [[pdf]](https://github.com/Mjrovai/XIAO-ESP32S3-Sense/blob/main/2.XIAO_ESP32S3-Motion_Classification.pdf)
+- Sound/Microphone - "Keyword Spotting (KWS)":  [[Web version]](https://www.hackster.io/mjrobot/tinyml-made-easy-keyword-spotting-kws-5fa6e7) -  [[pdf]](https://github.com/Mjrovai/XIAO-ESP32S3-Sense/blob/main/3.XIAO_ESP32S3-Keyword_Spotting.pdf)
 
 ## The XIAO-ESP32S3-Sense
 Seeed Studio XIAO ESP32S3 Sense integrates a camera sensor, digital microphone, and SD card support. Combining embedded ML computing power and photography capability, this development board is a great tool to get started with TinyML (intelligent voice and vision AI).
