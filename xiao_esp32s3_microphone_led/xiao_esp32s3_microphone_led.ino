@@ -39,8 +39,8 @@
  */
 
 /* Includes ---------------------------------------------------------------- */
-#include <XIAO-ESP32S3-KWS_inferencing.h>
-
+//#include <XIAO-ESP32S3-KWS_inferencing.h>
+#include <Marco-KWS-KIC_inferencing.h>
 #include <I2S.h>
 #define SAMPLE_RATE 16000U
 #define SAMPLE_BITS 16
@@ -142,7 +142,7 @@ void loop()
       }
     }
     // Display inference result
-    if (pred_index == 3){
+    if ((pred_index == 3) && (pred_value > 0.8)){
       digitalWrite(LED_BUILT_IN, LOW); //Turn on
     }
     else{
