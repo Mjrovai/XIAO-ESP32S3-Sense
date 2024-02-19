@@ -3,7 +3,7 @@
 
 This repository contains the code used on the TinyML tutorials: 
 - Image/Camera - "Image Classification":  [[Web version]](https://www.hackster.io/mjrobot/tinyml-made-easy-image-classification-cb42ae) -  [[pdf]](https://github.com/Mjrovai/XIAO-ESP32S3-Sense/blob/main/1.XIAO_ESP32S3-Image_Classification.pdf)
-- Image/Camera - "Object Detection":  [[Web version]](https://www.hackster.io/mjrobot/tinyml-made-easy-object-detection-with-xiao-esp32s3-sense-6be28d) - [pdf]](https://github.com/Mjrovai/XIAO-ESP32S3-Sense/blob/main/XIAO_ESP32S3-Object_Detection.pdf)
+- Image/Camera - "Object Detection":  [[Web version]](https://www.hackster.io/mjrobot/tinyml-made-easy-object-detection-with-xiao-esp32s3-sense-6be28d) - [[pdf]](https://github.com/Mjrovai/XIAO-ESP32S3-Sense/blob/main/XIAO_ESP32S3-Object_Detection.pdf)
 
 - Motion/Accelerometer - "Motion Classification and Anomaly Detection":  [[Web version]](https://www.hackster.io/mjrobot/exploring-machine-learning-with-the-new-xiao-esp32s3-6463e5) -  [[pdf]](https://github.com/Mjrovai/XIAO-ESP32S3-Sense/blob/main/2.XIAO_ESP32S3-Motion_Classification.pdf)
 - Sound/Microphone - "Keyword Spotting (KWS)":  [[Web version]](https://www.hackster.io/mjrobot/tinyml-made-easy-keyword-spotting-kws-5fa6e7) -  [[pdf]](https://github.com/Mjrovai/XIAO-ESP32S3-Sense/blob/main/3.XIAO_ESP32S3-Keyword_Spotting.pdf)
