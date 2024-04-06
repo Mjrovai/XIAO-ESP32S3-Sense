@@ -200,8 +200,10 @@ void loop()
     /* Create Coordinates and Size for Bounding Boxes */
     x = bb.x;
     y = bb.y;
-    w = bb.width * 6; // WIDTH MAX / CURRENT
-    h = bb.height * 5; // HEIGHT MAX / CURRENT
+
+    /* This operation is needed in order correct the dimensions of camera sensor and TFT display resolution */
+    w = bb.width * 6; // 1600 / 240 = 6.67
+    h = bb.height * 5; // 1200 MAX / 240 = 5
 
     /* Checking Sizes */
     ei_printf("BB Coord [ x: %u, y: %u, width: %u, height: %u ]\n",  bb.x, bb.y, bb.width, bb.height);
