@@ -4,20 +4,11 @@
 #include <SPI.h>
 
 /* Adding Edge Impulse Inferencing Library */
-#include <Add_Your_inferencing_here.h> // Remember to change this line!
+#include <Add_Your_inferencing_here.h> // <<< Remember to change this line!
 #include "edge-impulse-sdk/dsp/image/image.hpp"
 
-/* Adding ESP32S3 Sense Camera Support */
+/* Adding ESP32S3 Sense Camera Support - OV2640 */
 #include "esp_camera.h"
-
-/*  The bounding boxes were coming out small and the coordinates were out of place. 
-    I understood that, although the camera configuration points to 240x240, 
-    the images of the bounding boxes in the TFT were not in the same proportion. 
-    I decided to divide the maximum resolutions (1600x1200) by 240 and arrived at values 6.67 and 5.
- */
-
-#define MAX_WIDTH 1600
-#define MAX_HEIGHT 1200
 
 #define CAMERA_MODEL_XIAO_ESP32S3 // Has PSRAM
 
@@ -40,12 +31,18 @@
 
 #define TOUCH_INT D7
 
-/* Original EDGE IMPULSE example parameters - Change Camera Capture to display same size as TFT */
+/* Original EDGE IMPULSE example parameters 
+*  Change Camera Capture to display same size as TFT
+*  For some reason, the camera adjust the sensor to this
+*  size, but this does not reflect in TFT. TFT treats
+*  the coordinates like the camera has 1600x1200 resolution
+*/
+
 #define EI_CAMERA_RAW_FRAME_BUFFER_COLS           240
 #define EI_CAMERA_RAW_FRAME_BUFFER_ROWS           240
 #define EI_CAMERA_FRAME_BYTE_SIZE                 3
 
-/* Private variables ------------------------------------------------------- */
+/* Private variables */
 static bool debug_nn = false; // Set this to true to see e.g. features generated from the raw signal
 static bool is_initialised = false;
 uint8_t *snapshot_buf; //points to the output of the capture
@@ -76,12 +73,12 @@ static camera_config_t camera_config = {
   .ledc_channel = LEDC_CHANNEL_0,
 
   /* This config pixel format needed to be the same in function ei_camera_capture ()
-                                                        HERE
+                                                        HERE 
      bool converted = fmt2rgb888(fb->buf, fb->len, PIXFORMAT_RGB565, snapshot_buf);
 
   */
-  .pixel_format = PIXFORMAT_RGB565, //YUV422,GRAYSCALE,RGB565,JPEG
-  .frame_size = FRAMESIZE_240X240,    //QQVGA-UXGA Do not use sizes above QVGA when not JPEG
+  .pixel_format = PIXFORMAT_RGB565,     //YUV422,GRAYSCALE,RGB565,JPEG
+  .frame_size = FRAMESIZE_240X240,      //QQVGA-UXGA Do not use sizes above QVGA when not JPEG
 
   .jpeg_quality = 12, //0-63 lower number means higher quality
   .fb_count = 2,       //if more than one, i2s runs in continuous mode. Use only with JPEG
@@ -100,8 +97,8 @@ TFT_eSPI tft = TFT_eSPI();
 /* Bounding Boxes Coordinates need to be uint32_t in TFTeSPI Library */
 uint32_t x;
 uint32_t y;
-uint32_t w;
-uint32_t h;
+uint32_t w; // You will need to multiply this value later. 
+uint32_t h; // This too...
 
 /**
   @brief      Arduino setup function
@@ -115,11 +112,7 @@ void setup()
 
   /* Init TFT */
   tft.init();
-
-  /*   Need to set Rotation to 3 and change Camera Sensor 
-      Config to Sync coordinates of bounding boxes*/
-  
-  tft.setRotation(3);
+  tft.setRotation(3); // This is needed too. In order to get correct positions for bounding boxes
   tft.fillScreen(TFT_WHITE);
 
   if (ei_camera_init() == false) {
@@ -159,9 +152,9 @@ void loop()
   signal.total_length = EI_CLASSIFIER_INPUT_WIDTH * EI_CLASSIFIER_INPUT_HEIGHT;
   signal.get_data = &ei_camera_get_data;
 
-  /*  Makes the call to the ei_camera_capture function,
-      which captures the image to the framebuffer,
-      converts the image to the correct format and resizes it.
+  /*  Makes the call to the ei_camera_capture function, 
+   *  which captures the image to the framebuffer, 
+   *  converts the image to the correct format and resizes it. 
   */
   if (ei_camera_capture((size_t)EI_CLASSIFIER_INPUT_WIDTH, (size_t)EI_CLASSIFIER_INPUT_HEIGHT, snapshot_buf) == false) {
     ei_printf("Failed to capture image\r\n");
@@ -185,41 +178,27 @@ void loop()
 #if EI_CLASSIFIER_OBJECT_DETECTION == 1
   bool bb_found = result.bounding_boxes[0].value > 0;
 
-
   for (size_t ix = 0; ix < result.bounding_boxes_count; ix++) {
     auto bb = result.bounding_boxes[ix];
     if (bb.value == 0) {
       continue;
     }
-    /*
-      commenting this line, just to compare dimensions above
-      ei_printf("   %s (%f) [ x: %u, y: %u, width: %u, height: %u ]\n", bb.label, bb.value, bb.x, bb.y, bb.width, bb.height);
-
-    */
-
+    
     /* Create Coordinates and Size for Bounding Boxes */
     x = bb.x;
     y = bb.y;
+    w = bb.width * 6; // Do compensations. The camera resize the frame to 240x240 but this does not reflect in 
+    h = bb.height * 5; // TFT display coordinates. So you need to multiple this values...
 
-    /* This operation is needed in order correct the dimensions of camera sensor and TFT display resolution */
-    w = bb.width * 6; // 1600 / 240 = 6.67
-    h = bb.height * 5; // 1200 MAX / 240 = 5
-
-    /* Checking Sizes */
+    /* Checking Sizes */ 
     ei_printf("BB Coord [ x: %u, y: %u, width: %u, height: %u ]\n",  bb.x, bb.y, bb.width, bb.height);
-    ei_printf("Percentage %u",  result.classification[0].value);
+    ei_printf("TFT Coord [ x: %u, y: %u, width: %u, height: %u ]\n",  x, y, w, h);
 
     /* Draw Bounding Boxes in Display */
-    tft.drawRect (x, y, w, h, TFT_GREEN);
-    tft.setCursor(x, y);
-    tft.setTextColor(TFT_GREEN);
-    tft.setTextFont(4);
-    tft.println(bb.label);
-    tft.endWrite();
+    tft.drawRect (x, y, w, h, TFT_GREEN); 
   }
   if (!bb_found) {
-    ei_printf("TFT Example -     No objects found\n");
-    tft.endWrite();
+    ei_printf("TFT Example -     No objects found\n");   
   }
 #else
   for (size_t ix = 0; ix < EI_CLASSIFIER_LABEL_COUNT; ix++) {
@@ -246,6 +225,11 @@ bool ei_camera_init(void) {
 
   if (is_initialised) return true;
 
+#if defined(CAMERA_MODEL_ESP_EYE)
+  pinMode(13, INPUT_PULLUP);
+  pinMode(14, INPUT_PULLUP);
+#endif
+
   //initialize the camera
   esp_err_t err = esp_camera_init(&camera_config);
   if (err != ESP_OK) {
@@ -254,16 +238,10 @@ bool ei_camera_init(void) {
   }
 
   sensor_t * s = esp_camera_sensor_get();
-  // initial sensors are flipped vertically and colors are a bit saturated
+  // This is needed too. In order to get correct positions for bounding boxes
+  s->set_vflip(s, 1);
+  s->set_hmirror(s, 1);
 
-  /*  You need to change these settings, otherwise
-      the x and y coordinates of the TFT and the camera will be
-      different from each other. 
-      It appears that the TFT is rotated 90 counterclockwise in relation to the camera...
-  */
-  s->set_vflip(s, 1); // flip vertical
-  s->set_hmirror(s, 1); // mirror horizontal
-  
   is_initialised = true;
   return true;
 }
@@ -312,12 +290,13 @@ bool ei_camera_capture(uint32_t img_width, uint32_t img_height, uint8_t *out_buf
     ei_printf("Camera capture failed\n");
     return false;
   }
-  /*  Write camera captured framebuffer into TFT Display */
+/*  Write camera captured framebuffer into TFT Display */
   tft.startWrite();
   tft.setAddrWindow(0, 0, EI_CAMERA_RAW_FRAME_BUFFER_COLS, EI_CAMERA_RAW_FRAME_BUFFER_ROWS);
   tft.pushColors(fb->buf, fb->len);
+  tft.endWrite();
 
-  /*  Pay attention to this PIXFORMAT_RGB565 parameter in camera config. Need to be equal or convertion will fail  */
+/*  Pay attention to this PIXFORMAT_RGB565 parameter in camera config. Need to be equal or convertion will fail  */
   bool converted = fmt2rgb888(fb->buf, fb->len, PIXFORMAT_RGB565, snapshot_buf);
 
   esp_camera_fb_return(fb);
